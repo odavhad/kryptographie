@@ -25,9 +25,12 @@ def decrypt():
         text = request.form.get('textbox')
         key = request.form.get('key').encode()
 
-        obj = Fernet(key)
-        decryptedText = obj.decrypt(text.encode()).decode()
+        try:
+            obj = Fernet(key)
+            decryptedText = obj.decrypt(text.encode()).decode()
+        except:
+            return render_template('decrypt.html', view=False, error=True)
 
         return render_template('decrypt.html', view=True, decryptedText=decryptedText)
 
-    return render_template('decrypt.html')
+    return render_template('decrypt.html', view=False)
