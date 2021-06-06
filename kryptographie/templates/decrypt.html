@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="card" style="width: 80%;">
+    <header class="card-header">
+        <h1 class="card-header-title title">
+            {% if view %}
+            Decrypted Text
+            {% else %}
+            Decrypt
+            {% endif %}
+        </h1>
+    </header>
+
+    <div class="card-content">
+        {% if view %}
+        <div class="container">
+            <form style="padding-left: 5%; padding-right: 5%;">
+                <div class="field">
+                    {{ decryptedText }}
+                </div>
+            </form>
+        </div>
+        {% else %}
+        <div class="container">
+            <form action="{{ url_for('bp.decrypt') }}" method="POST" style="padding-left: 5%; padding-right: 5%;">
+                <div class="field">
+                    <textarea id="textbox" name="textbox" class="textarea" placeholder="Enter the encrypt text here." required></textarea>
+                </div>
+                <div class="field">
+                    <button class="button is-dark is-outlined" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
