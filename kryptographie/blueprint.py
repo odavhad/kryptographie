@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request
+from cryptography.fernet import Fernet
 
 bp = Blueprint('bp', __name__, '/')
 
@@ -8,8 +9,12 @@ bp = Blueprint('bp', __name__, '/')
 def encrypt():
     if request.method == 'POST':
         text = request.form.get('textbox')
+        key = Fernet.generate_key()
 
-        return render_template('encrypt.html', view=True, encryptedText=text)
+        obj = Fernet(key)
+        encryptedText = obj.encrypt(text.encode()).decode()
+
+        return render_template('encrypt.html', view=True, encryptedText=encryptedText, key=key.decode())
 
     return render_template('encrypt.html', view=False)
 
@@ -18,7 +23,11 @@ def encrypt():
 def decrypt():
     if request.method == 'POST':
         text = request.form.get('textbox')
+        key = request.form.get('key').encode()
 
-        return render_template('decrypt.html', view=True, decryptedText=text)
+        obj = Fernet(key)
+        decryptedText = obj.decrypt(text.encode()).decode()
+
+        return render_template('decrypt.html', view=True, decryptedText=decryptedText)
 
     return render_template('decrypt.html')

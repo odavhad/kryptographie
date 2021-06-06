@@ -14,7 +14,7 @@
 
     <div class="card-content">
         {% if view %}
-        <div class="container">
+        <div class="container"style="word-wrap: break-word;">
             <form style="padding-left: 5%; padding-right: 5%;">
                 <div class="field">
                     {{ decryptedText }}
@@ -25,7 +25,18 @@
         <div class="container">
             <form action="{{ url_for('bp.decrypt') }}" method="POST" style="padding-left: 5%; padding-right: 5%;">
                 <div class="field">
-                    <textarea id="textbox" name="textbox" class="textarea" placeholder="Enter the encrypt text here." required></textarea>
+                    <div class="columns">
+                        <div class="column is-2">
+                            <label for="key" class="label">Key</label>
+                        </div>
+                        <div class="column">
+                            <input id="key" name="key" class="input" type="text" placeholder="Enter the key here." required>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <textarea id="textbox" name="textbox" class="textarea" placeholder="Enter the encrypt text here."
+                        required></textarea>
                 </div>
                 <div class="field">
                     <button class="button is-dark is-outlined" type="submit">Submit</button>
