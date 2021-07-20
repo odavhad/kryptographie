@@ -6,6 +6,10 @@ The user can enter any text, following which the webapp generates a key and outp
 
 The website is deployed [here](http://kryptographie.pythonanywhere.com/).
 
+## Preview
+
+![preview](preview/preview.gif)
+
 ## Getting Started
 
 1. Fork the repository and then clone the repository locally. Type the following command/s in the terminal. \
@@ -23,6 +27,5 @@ The website is deployed [here](http://kryptographie.pythonanywhere.com/).
    `export FLASK_APP=kryptographie` \
    `export FLASK_ENV=development` \
    Note, the value of _'FLASK_ENV'_ must be set to 'production' while deploying the application.
-   
 5. Run the app. Type the following command/s in the terminal. \
    `flask run`
